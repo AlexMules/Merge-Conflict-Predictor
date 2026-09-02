@@ -33,6 +33,7 @@ The dataset (`MergeConflictsDataset.csv`) consists of historical merge events co
 
 * `MergeConflictPredictor.ipynb`: The primary Jupyter Notebook containing the full end-to-end implementation.
 * `MergeConflictsDataset.csv`: The underlying dataset.
+<br>
 
 ## Getting Started & Usage
 
