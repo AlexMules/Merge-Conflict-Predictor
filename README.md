@@ -42,6 +42,8 @@ The dataset (`MergeConflictsDataset.csv`) consists of historical merge events co
    ```bash
    pip install pandas numpy scikit-learn matplotlib seaborn shap joblib
    ```
+   
+<br>
 
 ## Loading and Using the Saved Model
 
