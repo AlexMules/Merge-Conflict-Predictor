@@ -1,13 +1,13 @@
-# Merge Conflict Predictor
+# 🔀 Merge Conflict Predictor
 
 This repository contains a complete machine learning project built in Python using `scikit-learn`. The project tackles the software engineering problem of predicting merge conflicts in concurrent code branches based on code metrics, developer activity, and commit message keywords.
 <br><br>
 
-## Project Overview
+## 💡 Project Overview
 
 Merge conflicts frequently disrupt software development workflows. This project implements an automated classification pipeline using the **Merge Conflicts Dataset** (`MergeConflictsDataset.csv`) to predict whether a merge operation will result in a conflict (`conflict = 1`) or succeed peacefully (`conflict = 0`).
 
-### Key Steps Implemented:
+### 🛠️ Key Steps Implemented:
 1. **Data Inspection & Cleaning:** Removal of duplicate records and constant columns.
 2. **Exploratory Data Analysis (EDA):** Visualizing class distributions, feature histograms, and correlation matrices to understand underlying patterns.
 3. **Feature Engineering:** Creating domain-specific derived features (e.g., total lines changed, global collaboration intensity, change velocity).
@@ -18,7 +18,7 @@ Merge conflicts frequently disrupt software development workflows. This project 
 8. **Model Persistence:** Serializing the complete end-to-end pipeline using `joblib` for deployment readiness.
 <br>
 
-## Dataset Description
+## 📊 Dataset Description
 
 The dataset (`MergeConflictsDataset.csv`) consists of historical merge events containing 37 columns and 26,973 records. Key feature categories include:
 * **Pull Request Status (`is pr`):** Indicator of whether a pull request was created prior to merging.
@@ -29,13 +29,13 @@ The dataset (`MergeConflictsDataset.csv`) consists of historical merge events co
 * **Target Variable (`conflict`):** Binary label indicating whether a merge conflict occurred (`1`) or not (`0`).
 <br>
 
-## Repository Structure
+## 📂 Repository Structure
 
 * `MergeConflictPredictor.ipynb`: The primary Jupyter Notebook containing the full end-to-end implementation.
 * `MergeConflictsDataset.csv`: The underlying dataset.
 <br>
 
-## Getting Started & Usage
+## 🚀 Getting Started & Usage
 
 1. Clone the repository and ensure you have Python 3.8+ installed.
 2. Install the required dependencies by running:
@@ -45,7 +45,7 @@ The dataset (`MergeConflictsDataset.csv`) consists of historical merge events co
    
 <br>
 
-## Loading and Using the Saved Model
+## 💾 Loading and Using the Saved Model
 
 You can load the trained pipeline in your own scripts to make predictions on new merge data without re-running the training loop:
 
