@@ -27,8 +27,7 @@ The dataset (`MergeConflictsDataset.csv`) consists of historical merge events co
 * **Activity Density:** Commit density in the preceding week (`density1`, `density2`) and development duration (`time`).
 * **Commit Message Text Features:** Keyword frequencies (e.g., `fix`, `bug`, `feature`, `refactor`, `update`) and statistical lengths (min, max, mean, median).
 * **Target Variable (`conflict`):** Binary label indicating whether a merge conflict occurred (`1`) or not (`0`).
-
-<br><br>
+<br>
 
 ## Repository Structure
 
