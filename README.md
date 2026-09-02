@@ -31,7 +31,7 @@ The dataset (`MergeConflictsDataset.csv`) consists of historical merge events co
 
 ## Repository Structure
 
-* `Assignment_1.ipynb`: The primary Jupyter Notebook containing the full end-to-end implementation.
+* `MergeConflictPredictor.ipynb`: The primary Jupyter Notebook containing the full end-to-end implementation.
 * `MergeConflictsDataset.csv`: The underlying dataset.
 
 <br><br>
