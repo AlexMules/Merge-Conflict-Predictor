@@ -8,7 +8,7 @@ This repository contains a complete machine learning project built in Python usi
 Merge conflicts frequently disrupt software development workflows. This project implements an automated classification pipeline using the **Merge Conflicts Dataset** (`MergeConflictsDataset.csv`) to predict whether a merge operation will result in a conflict (`conflict = 1`) or succeed peacefully (`conflict = 0`).
 
 ### 🛠️ Key Steps Implemented:
-1. **Data Inspection & Cleaning:** Removal of duplicate records and constant columns.
+1. **Data Inspection & Cleaning:** Removal of duplicate records, Git hash identifiers (`commit`, `parent1`, `parent2`, `ancestor`), and constant columns with zero variance (e.g., `copied files`).
 2. **Exploratory Data Analysis (EDA):** Visualizing class distributions, feature histograms, and correlation matrices to understand underlying patterns.
 3. **Feature Engineering:** Creating domain-specific derived features (e.g., total lines changed, global collaboration intensity, change velocity).
 4. **Data Preprocessing Pipelines:** Using `scikit-learn` Pipelines and `ColumnTransformer` combined with `SimpleImputer` (median) and `StandardScaler` to safely preprocess features and prevent data leakage.
@@ -22,8 +22,8 @@ Merge conflicts frequently disrupt software development workflows. This project 
 
 To achieve robust predictive performance on real-world software engineering data, multiple models and iterative configurations were explored:
 
-* **Algorithms Evaluated:** Benchmarked **Logistic Regression** as a linear baseline alongside powerful non-linear tree models (**Random Forest Classifier** and **HistGradientBoostingClassifier**) to capture complex relationships among code metrics and keyword frequencies.
-* **Tackling Class Imbalance:** Because merge conflicts represent a minority class within the 26.9k dataset, implementing `class_weight='balanced'` (alongside scaled inputs for linear models) was critical to prevent models from defaulting to the majority class.
+* **Algorithms Evaluated:** Benchmarked **Logistic Regression** as a linear baseline alongside powerful non-linear tree models (**Random Forest Classifier** and **HistGradientBoostingClassifier**). The use of non-linear models was justified by the EDA, which revealed that the maximum linear Pearson correlation between any feature and the target was relatively weak (~0.30 for `nr commits2`).
+* **Tackling Class Imbalance:** The dataset presents a severe imbalance, with actual merge conflicts representing only ~5.4% of the 26.9k records. Implementing `class_weight='balanced'` (alongside scaled inputs for linear models) was critical to prevent models from defaulting to the majority class.
 * **Hyperparameter Tuning (`GridSearchCV`):** Extensive grid search experiments were run to tame overfitting. Constraining model complexity via tuned hyperparameters (such as setting `max_depth` between 8–12 and `min_samples_leaf` between 30–70 for tree models) successfully closed the performance gap between training and validation sets.
 * **Validation & Results:** 
   * Models were evaluated primarily using **F1-Score** and confusion matrices rather than raw accuracy to ensure reliable detection of actual conflict risks.
@@ -55,24 +55,21 @@ The dataset (`MergeConflictsDataset.csv`) consists of historical merge events co
    ```bash
    pip install pandas numpy scikit-learn matplotlib seaborn shap joblib
    ```
-   
-<br>
 
 ## 💾 Loading and Using the Saved Model
+You can load the trained pipeline in your own scripts to make predictions on new merge data without re-running the training loop.
 
-You can load the trained pipeline in your own scripts to make predictions on new merge data without re-running the training loop:
-
-```python
+``` python
 import joblib
 import pandas as pd
 
-# Load the saved pipeline
+# Load the saved model
 model = joblib.load("my_model.pkl")
 
 # Load new raw merge data
-new_data = pd.read_csv("new_merge_sample.csv")
+new_data = pd.read_csv("new_merge_sample.csv", sep=';')
 
 # Predict conflict outcomes automatically (preprocessing included)
 predictions = model.predict(new_data)
 print(predictions)
-
+```
