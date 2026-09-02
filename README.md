@@ -12,10 +12,23 @@ Merge conflicts frequently disrupt software development workflows. This project 
 2. **Exploratory Data Analysis (EDA):** Visualizing class distributions, feature histograms, and correlation matrices to understand underlying patterns.
 3. **Feature Engineering:** Creating domain-specific derived features (e.g., total lines changed, global collaboration intensity, change velocity).
 4. **Data Preprocessing Pipelines:** Using `scikit-learn` Pipelines and `ColumnTransformer` combined with `SimpleImputer` (median) and `StandardScaler` to safely preprocess features and prevent data leakage.
-5. **Model Training & Hyperparameter Tuning:** Exploring algorithms like **Random Forest** and **HistGradientBoostingClassifier**, applying `class_weight='balanced'` to handle severe class imbalance, and using `GridSearchCV` to optimize hyperparameters.
+5. **Model Training & Hyperparameter Tuning:** Exploring algorithms like **Logistic Regression**, **Random Forest**, and **HistGradientBoostingClassifier**, applying `class_weight='balanced'` to handle severe class imbalance, and using `GridSearchCV` to optimize hyperparameters.
 6. **Model Evaluation:** Using performance metrics suited for imbalanced classification (primarily **F1-Score** and confusion matrices) alongside learning curves to diagnose and mitigate overfitting.
 7. **Explainable AI (XAI):** Using **SHAP (SHapley Additive exPlanations)** to interpret model predictions and uncover which code metrics drive conflict risk.
 8. **Model Persistence:** Serializing the complete end-to-end pipeline using `joblib` for deployment readiness.
+<br>
+
+## 🧪 Model Experiments & Performance
+
+To achieve robust predictive performance on real-world software engineering data, multiple models and iterative configurations were explored:
+
+* **Algorithms Evaluated:** Benchmarked **Logistic Regression** as a linear baseline alongside powerful non-linear tree models (**Random Forest Classifier** and **HistGradientBoostingClassifier**) to capture complex relationships among code metrics and keyword frequencies.
+* **Tackling Class Imbalance:** Because merge conflicts represent a minority class within the 26.9k dataset, implementing `class_weight='balanced'` (alongside scaled inputs for linear models) was critical to prevent models from defaulting to the majority class.
+* **Hyperparameter Tuning (`GridSearchCV`):** Extensive grid search experiments were run to tame overfitting. Constraining model complexity via tuned hyperparameters (such as setting `max_depth` between 8–12 and `min_samples_leaf` between 30–70 for tree models) successfully closed the performance gap between training and validation sets.
+* **Validation & Results:** 
+  * Models were evaluated primarily using **F1-Score** and confusion matrices rather than raw accuracy to ensure reliable detection of actual conflict risks.
+  * Learning curves were analyzed during cross-validation to diagnose variance issues and fine-tune regularizations.
+  * **Feature Interpretability (SHAP):** Applied SHAP summary plots to extract transparent insights into *why* the model predicts conflicts, highlighting developer collaboration intensity and line modification thresholds as primary risk drivers.
 <br>
 
 ## 📊 Dataset Description
@@ -31,7 +44,7 @@ The dataset (`MergeConflictsDataset.csv`) consists of historical merge events co
 
 ## 📂 Repository Structure
 
-* `MergeConflictPredictor.ipynb`: The primary Jupyter Notebook containing the full end-to-end implementation.
+* `MergeConflictPredictor.ipynb`: The primary Jupyter Notebook containing the full end-to-end implementation, experiments, and evaluations.
 * `MergeConflictsDataset.csv`: The underlying dataset.
 <br>
 
