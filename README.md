@@ -46,6 +46,7 @@ The dataset (`MergeConflictsDataset.csv`) consists of historical merge events co
 
 * `MergeConflictPredictor.ipynb`: The primary Jupyter Notebook containing the full end-to-end implementation, experiments, and evaluations.
 * `MergeConflictsDataset.csv`: The underlying dataset.
+
 <br>
 
 ## 🚀 Getting Started & Usage
@@ -55,6 +56,8 @@ The dataset (`MergeConflictsDataset.csv`) consists of historical merge events co
    ```bash
    pip install pandas numpy scikit-learn matplotlib seaborn shap joblib
    ```
+
+<br>
 
 ## 💾 Loading and Using the Saved Model
 You can load the trained pipeline in your own scripts to make predictions on new merge data without re-running the training loop.
