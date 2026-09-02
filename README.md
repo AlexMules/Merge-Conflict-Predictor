@@ -46,3 +46,23 @@ The dataset (`MergeConflictsDataset.csv`) consists of historical merge events co
    pip install pandas numpy scikit-learn matplotlib seaborn shap joblib
    ```
 
+<br><br>
+
+## Loading and Using the Saved Model
+
+You can load the trained pipeline in your own scripts to make predictions on new merge data without re-running the training loop:
+
+```python
+import joblib
+import pandas as pd
+
+# Load the saved pipeline
+model = joblib.load("my_model.pkl")
+
+# Load new raw merge data
+new_data = pd.read_csv("new_merge_sample.csv")
+
+# Predict conflict outcomes automatically (preprocessing included)
+predictions = model.predict(new_data)
+print(predictions)
+
