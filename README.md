@@ -1,7 +1,6 @@
 # Merge Conflict Predictor
 
 This repository contains a complete machine learning project built in Python using `scikit-learn`. The project tackles the software engineering problem of predicting merge conflicts in concurrent code branches based on code metrics, developer activity, and commit message keywords.
-
 <br><br>
 
 ## Project Overview
