@@ -16,8 +16,7 @@ Merge conflicts frequently disrupt software development workflows. This project 
 6. **Model Evaluation:** Using performance metrics suited for imbalanced classification (primarily **F1-Score** and confusion matrices) alongside learning curves to diagnose and mitigate overfitting.
 7. **Explainable AI (XAI):** Using **SHAP (SHapley Additive exPlanations)** to interpret model predictions and uncover which code metrics drive conflict risk.
 8. **Model Persistence:** Serializing the complete end-to-end pipeline using `joblib` for deployment readiness.
-
-<br><br>
+<br>
 
 ## Dataset Description
 
